@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+
+<!-- <html lang="en" xmlns="http://www.w3.org/1999/xhtml"> -->
+<html lang="en">
+<head>
+    <!-- <meta charset="utf-8" /> -->
+    <title>Haas CMM measurements</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            font-size: 12px;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+            table tr {
+                border-bottom: 1px solid
+            }
+
+            table th, table td {
+                padding: 10px 20px;
+            }
+    </style>
+</head>
+<body>
+
+    <h1 style="font-size:20px; font-weight:bold;">Measurements from Haas CNC Machine using CMM Touch Probe</h1>
+
+    <h3><br /></h3>
+    {{ head_table }}
+    <h3><br /><br /></h3>
+    <hr />
+    <h3><br /></h3>
+    <h3>MEASUREMENTS</h3>
+    <h3><br /></h3>
+    {{ meas_01a_table }}
+    <br />
+    {{ meas_01b_table }}
+    <br />
+    {{ meas_01c_table }}
+    <br />
+    {{ meas_01d_table }}
+    <br />
+    <h3><br /></h3>
+    {{ meas_02a_table }}
+    <br />
+    {{ meas_02b_table }}
+    <br />
+    {{ meas_02c_table }}
+    <br />
+    {{ meas_02d_table }}
+    <br />
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <hr />
+    <h3><br /></h3>
+    <h3>DIFFERENCES</h3>
+    <h3>(X1diff and Y1diff is diff to hole #1. This eliminates error to edge). <br />
+    L1diff is the total length difference. This is the most critical for assessing the accuracy of the X-Y centers.  
+    The length difference is computed as pythagorean <br />
+    theorem.  So, the X and Y difference are squared. Therefore the difference is always negative. The sign does not change.</h3>
+    <h5><br /></h5>
+    {% for table in meas_03_tables%}
+    {{ table }}
+    <br />
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    {% endfor %}
+
+
+    <hr />
+    <h3><br /></h3>
+    <h2>PLOTS</h2>
+    <h3>
+        All of the hole diameters from all the holes on all of the plates.<br />
+        The spec is 0.4900 to 0.4910. If a hole diameter is too small, dirt maybe the cause.
+    </h3>
+    <img src='plot_01.svg' width="1000">
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <img src='plot_02.svg' width="1000">
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <h3>
+        All of the hole locations from all the holes on all of the plates. To eliminate errors caused by measuring from the side of the plate, math was <br />
+        done on the collected data.  The X-Y location of hole #1 was used as the origin. Then, math calculations were done to measure the distance from the hole # 01<br />
+        location to the current location.  This value then is compared to the specification (theoretical) value.  The closer to zero, the more accurate the hole<br />
+        center location is.  Because the distance (length) measurement has squares in it, the sign never changes so the difference is always negative.
+    </h3>
+    <img src='plot_03.svg' width="1000">
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <img src='plot_04.svg' width="1000">
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <h3>
+        All of the Z heights by each hole.<br />
+        The differences in Z heights is not just the plate not being perfectly flat, <br />
+        But also that the plate maybe tilted in the Z plane in the vise. <br />
+    </h3>
+    <img src='plot_05.svg' width="1000">
+
+    <h3>
+        <p style="page-break-before: always"></p>
+        <br />
+    </h3>
+    <img src='plot_06.svg' width="1000">
+
+</body>
+</html>
